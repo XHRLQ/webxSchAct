@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="com.luoqing.">
+    <insert id="insertActivity" parameterType="Activity" useGeneratedKeys="true">
+        INSERT INTO activity(name,time,location,outline,detail,status) values(#{name},#{time},#{location},#{outline},#{detail},#{status})
+    </insert>
+
+    <delete id="deleteActivity" parameterType="Activity">
+        DELETE FROM activity WHERE id=#{id}
+    </delete>
+
+    <update id="closeAcitivity" parameterType="long">
+        UPDATE activity SETstatus='close' WHERE id=#{id}
+    </update>
+
+    <select id="selectActivities" resultType="Activity">
+        SELECT * FROM activity
+    </select>
+
+    <select id="selectActivitiesByInstitution" parameterType="String" resultType="Activity">
+        SELECT a.id,a.detail,a.location,a.name,a.outline,a.status,a.time FROM activity a, client b WHERE a.initiatorId=b.id AND institution=#{institution} ABD a.status='active'
+    </select>
+
+    <select id="selectActivitiesByCatgoryId" parameterType="int" resultType="Activity">
+        SELECT * FROM activity WHERE catgoryId=#{catgoryId} AND status='active'
+    </select>
+
+    <select id="selectActivitiesByDate"  resultType="Activity">
+        SELECT * FROM activity WHERE time>=#{statDate} AND time <= #{endDate}
+    </select>
+
+    <select id="selectActivityById" resultType="Activity">
+        SELECT * FROM activity WHERE id=#{activityId}
+    </select>
+
+    <select id="selectActivitiesByCreator" parameterType="long" resultType="Activities">
+        SELECT * FROM activity WHERE initiatorId=#{clientId}
+    </select>
+
+    <select id="selectActivitiesByParticipator" parameterType="long" resultType="Acitivity">
+        SELECT * FROM activity WHERE id IN (SELECT id FROM client_activity WHERE id=#{clientId})
+    </select>
+
+    <select id="selectActivityByClientIdAndActivityId" resultType="Activity">
+        SELECT FROM client_activity WHERE clientId=#{clientId} AND activityId=#{activityId}
+    </select>
+
+</mapper>

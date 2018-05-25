@@ -1,0 +1,29 @@
+<form action="$app1Link.setTarget("manager/addUser")" method="POST" enctype="multipart/form-data">
+    $csrfToken.hiddenField
+    <input name="action" value="manage_user_action"/>
+
+    #set ($group=$form.add.defaultInstance)
+
+    <p>修改客户信息</p>
+    <p>用户名：<input name="$group.name.key" value="$!group.name.value"/></p>
+    #if(!$group.name.valid)
+        <p>$group.name.message</p>
+    #end
+    <p>密码：<input name="$group.pswd.key" value="$!group.pswd.value"/></p>
+    #if(!$group.pswd.valid)
+        $group.pswd.message
+    #end
+    <p>性别：<input type="checkbox" name="$!group.gender.key" value="$!group.gender.value"/></p>
+    #if(!$group.gender.valid)
+        $group.gender.message
+    #end
+    <p>邮箱：<input name="$group.email.key" value="$!group.email.value"></p>
+    #if(!$group.email.valid)
+        $group.email.messsage
+    #end
+    <p>头像：<input type="file" name="$group.img.key" value="$group.img.value"/></p>
+    #if(!$group.img.valid)
+        $group.img.message
+    #end
+    <p><input type="submit" name="event_submit_add_user" value="确认修改"/></p>
+</form>

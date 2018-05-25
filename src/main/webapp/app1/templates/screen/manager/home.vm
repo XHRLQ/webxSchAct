@@ -1,0 +1,8 @@
+<p>管理平台</p>
+
+<p>
+    <a href="manager/manage_user"><input type="button" name="manageUser" value="管理客户信息"/></a>
+</p>
+<p>
+    <a href="manager/manage_catgory"><input type="button" name="manageCatgory" value="管理类别信息"/></a>
+</p>

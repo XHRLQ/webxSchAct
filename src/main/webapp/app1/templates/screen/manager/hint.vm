@@ -1,0 +1,4 @@
+<p>管理用户</p>
+<p>${operation}成功！<a href="manager/home"><input type="button" name="goBack" value="返回主页"/></a></p>
+
+

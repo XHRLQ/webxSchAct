@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//ibatis.apache.org//DTD Config 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-config.dtd">
+<configuration>
+    <properties>
+    </properties>
+
+    <settings>
+    </settings>
+
+    <typeAliases>
+        <typeAliase type="com.luoqing.learning.app1.model.Manager" name="Manager"/>
+        <typeAliase type="com.luoqing.learning.app1.model.Catgory" name="Catgory"/>
+        <typeAliase type="com.luoqing.learning.app1.model.Client" name="Client"/>
+        <typeAliase type="com.luoqing.learning.app1.model.ClientActivity" name="ClientActivity"/>
+        <typeAliase type="com.luoqing.learning.app1.model.Activity" name="Activity"/>
+        <typeAliase type="java.util.List" name="List"/>
+    </typeAliases>
+
+    <typeHandlers>
+    </typeHandlers>
+
+    <environments default="environment">
+        <environment id="environment">
+            <transactionManager type="MANAGED">
+            </transactionManager>
+            <dataSource type="POOLED">
+                <poperty  name="driver" value="com.mysql.jdbc.Driver"/>
+                <property name="url" value="jdbc:mysql://localhost:3306/pro_sale?characterEncoding=UTF-8"/>
+                <property name="username" value="root"/>
+                <property name="password" value="root"/>
+            </dataSource>
+        </environment>
+    </environments>
+
+    <mappers>
+        <mapper resource="com.luoqing.learning.app1.resource"/>
+    </mappers>
+</configuration>
+

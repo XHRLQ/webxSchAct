@@ -1,0 +1,12 @@
+<p>管理用户</p>
+
+<p><a href="manager/addUser"><input type="button" name="add" value="添加用户"/></a></p>
+<p><a href="manager/home"><input type="button" name="goBack" value="返回主页"/></a></p>
+
+#foreach($client in $clients)
+    <li>
+        ${client.name}:
+        <a href="manager/modify_user?id=${client.id}">修改</a>
+        <a href="deleteUser?action=manage_user_action&event_submit_delete_user&id=${client.id}">删除</a>
+    </li>
+#end

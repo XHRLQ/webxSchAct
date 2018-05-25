@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="com.luoqing.learning.app1.resource.ManagerMapper">
+    <insert id="insertClientActivity" parameterType="ClientActivity" useGeneratedKeys="true">
+        INSERT INTO client_activity(phoneNum,selfIntroduction,clientId,activityId) values(#{phoneNum},#{selfIntroduction}),#{client.id},#{activity.id}
+    </insert>
+
+    <delete id="deleteClientActivity" parameterType="ClientActivity">
+        DELETE FROM client_activity WHERE id=#{id}
+    </delete>
+</mapper>

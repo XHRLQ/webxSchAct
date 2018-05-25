@@ -1,0 +1,20 @@
+<form action="$app1Link.setTarget("manager/login")" method="post">
+    $csrfToken.hiddenField
+    <input type="hidden" name="action" value="login_action"/>
+
+    #set ($group = $form.login.defaultInstance)
+
+    <p>管理员登录</p>
+    <input type="text" name="$group.name.key" value="$!group.name.value"/>
+    #if (!$group.name.valid)
+        <p>$group.name.message</p>
+    #end
+    <input type="text" name="$group.pswd.key" value="$!group.pswd.value"/>
+    #if (!$group.pswd.valid)
+        <p>$group.pswd.message</p>
+    #end
+    <p>
+        <input type="submit" name="event_submit_do_login" value="登录"/>
+    </p>
+
+</form>

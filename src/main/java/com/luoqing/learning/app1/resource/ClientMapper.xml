@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="com.luoqing.learning.app1.resource.ClientMapper">
+    <insert id="insertClient" parameterType="Client" useGeneratedKeys="true">
+        INSERT INTO client(email,pswd) VALUES (#{email},#{pswd})
+    </insert>
+
+    <!--账号不能修改，只能修改密码-->
+    <update id="updateClient" resultType="int">
+        UPDATE client
+        <set>
+             <if test="pswd!=null">pswd=#{pswd}</if>
+        </set>
+        WHERE id=#{id}
+    </update>
+
+    <insert id="deleteClient" parameterType="Client">
+        DELETE FROM client WHERE id=#{id}
+    </insert>
+
+    <select id="selectClientByEmail" resultType="Client">
+        SELECT * FROM client WHERE email=#{email}
+    </select>
+
+    <select id="selectClientById" parameterType="long" resultType="Client">
+        SELECT * FROM client WHERE id=#{id}
+    </select>
+
+    <select id="selectOriginClient" parameterType="Client" resultType="Client">
+        SELECT * FROM client WHERE email=#{email} and pswd=#{pswd}
+    </select>
+
+    <select id="selectClients" resultType="Client">
+        SELECT * FROM client;
+    </select>
+
+
+</mapper>

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:services="http://www.alibaba.com/schema/services"
+    xmlns:fm-conditions="http://www.alibaba.com/schema/services/form/conditions"
+    xmlns:fm-validators="http://www.alibaba.com/schema/services/form/validators"
+    xmlns="http://www.alibaba.com/schema/services/form/validators"
+    xmlns:beans="http://www.springframework.org/schema/beans"
+    xmlns:p="http://www.springframework.org/schema/p"
+    xsi:schemaLocation="
+        http://www.alibaba.com/schema/services http://localhost:8080/schema/services.xsd
+        http://www.alibaba.com/schema/services/form/conditions http://localhost:8080/schema/services-form-conditions.xsd
+        http://www.alibaba.com/schema/services/form/validators http://localhost:8080/schema/services-form-validators.xsd
+        http://www.springframework.org/schema/beans http://localhost:8080/schema/www.springframework.org/schema/beans/spring-beans.xsd
+    ">
+
+    <services:form postOnlyByDefault="true">
+        <!--
+          - ===============================================
+          - 用来检查csrf token。
+          - ===============================================
+         -->
+        <services:group name="csrfCheck">
+            <services:field name="csrfToken">
+                <csrf-validator>
+                    <message>提交的数据已过期</message>
+                </csrf-validator>
+            </services:field>
+        </services:group>
+        <!--
+          - ===============================================
+          - Simple form
+          - ===============================================
+         -->
+        <services:group name="simple" extends="csrfCheck">
+            <services:field name="name" displayName="你的名字">
+                <required-validator>
+                    <message>必须填写 ${displayName}</message>
+                </required-validator>
+            </services:field>
+        </services:group>
+
+        <services:group name="login" extends="scrfCheck">
+            <services:field name="name" displayName="账号">
+                <required-validator>
+                    <message>必须填写${displayName}</message>
+                </required-validator>
+            </services:field>
+            <services:field name="pswd" displayName="密码">
+                <required-validator>
+                    <message>必须填写${displayName}</message>
+                </required-validator>
+            </services:field>
+        </services:group>
+
+        <services:group name="add" extends="scrfCheck">
+            <services:field name="name" displayName="用户名">
+                <services:required-validator>
+                    <message>${displayName}不能为空</message>
+                </services:required-validator>
+                <regexp-validator pattern="^[_A-Za-z][0-9A-Za-z_]$">
+                    <message>${displayName}必须由字母、数字、下划线组成</message>
+                </regexp-validator>
+            </services:field>
+
+            <services:field name="pswd" displayName="密码">
+                <services:required-validator>
+                    <message>${displayName}不能为空</message>
+                </services:required-validator>
+                <services:regexp-validator pattern="^(?![0-9]+$)(?!A-Za-z)+$[A-Za-z0-9]{8,16}$">
+                    <message>${displayName}太简单,必须由8-16位字母和数字组成</message>
+                </services:regexp-validator>
+            </services:field>
+
+            <services:field name="confirmPswd" displayName="密码确认">
+                <services:required-validator>
+                    <message>请确认密码</message>
+                </services:required-validator>
+                <services:string-compare-validator equalTo="pswd">
+                    <message>${displayName}必须和${pswd.displayName}一致</message>
+                </services:string-compare-validator>
+            </services:field>
+
+            <services:field name="gender" displayName="性别">
+                <required-validator>
+                    <message>${displayName}不能为空</message>
+                </required-validator>
+            </services:field>
+
+            <services:field name="email" displayName="邮箱">
+                <required-validator>
+                    <message>${displayName}不能为空</message>
+                </required-validator>
+                <regexp-validator pattern="^[a-zA-Z0-9_.-]+@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*\.[a-zA-Z0-9]{2,6}$">
+                    <message>${displayName}格式不正确</message>
+                </regexp-validator>
+            </services:field>
+
+            <services:field name="img" displayName="头像">
+                <required-validator>
+                    <message>${displayName}不能为空</message>
+                </required-validator>
+            </services:field>
+        </services:group>
+    </services:form>
+
+</beans:beans>
