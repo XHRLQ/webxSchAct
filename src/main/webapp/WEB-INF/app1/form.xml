@@ -39,7 +39,7 @@
             </services:field>
         </services:group>
 
-        <services:group name="login" extends="scrfCheck">
+        <services:group name="login" extends="csrfCheck">
             <services:field name="name" displayName="账号">
                 <required-validator>
                     <message>必须填写${displayName}</message>
@@ -52,32 +52,32 @@
             </services:field>
         </services:group>
 
-        <services:group name="add" extends="scrfCheck">
+        <services:group name="add" extends="csrfCheck">
             <services:field name="name" displayName="用户名">
-                <services:required-validator>
+                <required-validator>
                     <message>${displayName}不能为空</message>
-                </services:required-validator>
+                </required-validator>
                 <regexp-validator pattern="^[_A-Za-z][0-9A-Za-z_]$">
                     <message>${displayName}必须由字母、数字、下划线组成</message>
                 </regexp-validator>
             </services:field>
 
             <services:field name="pswd" displayName="密码">
-                <services:required-validator>
+                <required-validator>
                     <message>${displayName}不能为空</message>
-                </services:required-validator>
-                <services:regexp-validator pattern="^(?![0-9]+$)(?!A-Za-z)+$[A-Za-z0-9]{8,16}$">
+                </required-validator>
+                <regexp-validator pattern="^(?![0-9]+$)(?!A-Za-z)+$[A-Za-z0-9]{8,16}$">
                     <message>${displayName}太简单,必须由8-16位字母和数字组成</message>
-                </services:regexp-validator>
+                </regexp-validator>
             </services:field>
 
             <services:field name="confirmPswd" displayName="密码确认">
-                <services:required-validator>
+                <required-validator>
                     <message>请确认密码</message>
-                </services:required-validator>
-                <services:string-compare-validator equalTo="pswd">
+                </required-validator>
+                <string-compare-validator equalTo="pswd">
                     <message>${displayName}必须和${pswd.displayName}一致</message>
-                </services:string-compare-validator>
+                </string-compare-validator>
             </services:field>
 
             <services:field name="gender" displayName="性别">

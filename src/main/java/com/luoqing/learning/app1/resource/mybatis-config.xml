@@ -24,7 +24,7 @@
             <transactionManager type="MANAGED">
             </transactionManager>
             <dataSource type="POOLED">
-                <poperty  name="driver" value="com.mysql.jdbc.Driver"/>
+                <property  name="driver" value="com.mysql.jdbc.Driver"/>
                 <property name="url" value="jdbc:mysql://localhost:3306/pro_sale?characterEncoding=UTF-8"/>
                 <property name="username" value="root"/>
                 <property name="password" value="root"/>

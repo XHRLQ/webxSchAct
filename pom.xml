@@ -17,6 +17,7 @@
         <springext-plugin-version>1.0</springext-plugin-version>
         <jetty-version>6.1.22</jetty-version>
         <mybatis-version>3.1.1</mybatis-version>
+        <mybatis-spring-version>1.3.1</mybatis-spring-version>
         <mysql-version>5.1.39</mysql-version>
         <project.build.sourceEncoding>${java.encoding}</project.build.sourceEncoding>
     </properties>
@@ -36,6 +37,10 @@
         <dependency>
             <groupId>org.mybatis</groupId>
             <artifactId>mybatis</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis-spring</artifactId>
         </dependency>
         <dependency>
             <groupId>mysql</groupId>
@@ -164,6 +169,11 @@
                 <groupId>org.mybatis</groupId>
                 <artifactId>mybatis</artifactId>
                 <version>${mybatis-version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.mybatis</groupId>
+                <artifactId>mybatis-spring</artifactId>
+                <version>${mybatis-spring-version}</version>
             </dependency>
             <dependency>
                 <groupId>mysql</groupId>
